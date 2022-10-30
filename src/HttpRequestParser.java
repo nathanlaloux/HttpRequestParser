@@ -21,10 +21,14 @@ public class HttpRequestParser {
             String url = RegexHelper.getUrlFromString(line);
 
             //set and update visited url map
-            updateMapRecord(visitedUrls, url);
+            if(!url.isBlank()){
+                updateMapRecord(visitedUrls, url);
+            }
 
             //set and update active ip address map
-            updateMapRecord(activeIpAddresses, ipAddress);
+            if(!ipAddress.isBlank()) {
+                updateMapRecord(activeIpAddresses, ipAddress);
+            }
         }
 
         //display number of unique addresses
