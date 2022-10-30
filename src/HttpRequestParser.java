@@ -13,39 +13,33 @@ public class HttpRequestParser {
         //read lines from the Log File
         List<String> lines = LogFileHelper.readLinesFromFile("C:\\programming-task-example-data.log");
 
-        List<String> uniqueIpAddresses = new ArrayList<>();
-        Map<String,Integer> mostVisitedUrl = new HashMap();
-        Map<String, Integer> mostActiveIpAddresses = new HashMap<>();
+        Map<String,Integer> visitedUrls = new HashMap();
+        Map<String, Integer> activeIpAddresses = new HashMap<>();
 
         for(String line : lines){
             String ipAddress = RegexHelper.getIpAddressFromString(line);
             String url = RegexHelper.getUrlFromString(line);
 
-            //set unique ip addresses list
-            if(!uniqueIpAddresses.contains(ipAddress)){
-                uniqueIpAddresses.add(ipAddress);
-            }
+            //set and update visited url map
+            updateMapRecord(visitedUrls, url);
 
-            //set and update most visited url map
-            updateMapRecord(mostVisitedUrl, url);
-
-            //set and update most active ip address map
-            updateMapRecord(mostActiveIpAddresses, ipAddress);
+            //set and update active ip address map
+            updateMapRecord(activeIpAddresses, ipAddress);
         }
 
         //display number of unique addresses
-        System.out.println("\nNumber of Unique Ip Addresses: " + uniqueIpAddresses.size());
+        System.out.println("\nNumber of Unique Ip Addresses: " + activeIpAddresses.size());
 
         //display most visited URLs
         System.out.println("\nMost Visited URLs:");
-        mostVisitedUrl.entrySet().stream()
+        visitedUrls.entrySet().stream()
                 .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
                 .limit(3)
                 .forEach(k -> System.out.println(k.getKey() + " ==> visited " + k.getValue() + " time(s)"));
 
         //Display most active Ip Addresses
         System.out.println("\nMost Active Ip Addresses:");
-        mostActiveIpAddresses.entrySet().stream()
+        activeIpAddresses.entrySet().stream()
                 .sorted((k1, k2) -> -k1.getValue().compareTo(k2.getValue()))
                 .limit(3)
                 .forEach(k -> System.out.println(k.getKey() + " ==> active " + k.getValue() + " time(s)"));

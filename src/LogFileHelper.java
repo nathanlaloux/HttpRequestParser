@@ -4,7 +4,7 @@ import java.util.List;
 
 public class LogFileHelper {
 
-    //Reads a text file and return its content in the format of a List of String
+    //Read a text file and return its content in the format of a List of String
     public static List<String> readLinesFromFile(String fileName) {
 
         File file = new File(fileName);
