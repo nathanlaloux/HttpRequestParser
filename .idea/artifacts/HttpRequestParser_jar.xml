@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HttpRequestParser:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/HttpRequestParser_jar</output-path>
+    <root id="archive" name="HttpRequestParser.jar">
+      <element id="module-output" name="HttpRequestParser" />
+    </root>
+  </artifact>
+</component>
